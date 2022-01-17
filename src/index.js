@@ -2,17 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-class Message extends React.Component {
-  
-  render () {
-    let {text} = this.props;
-    return (
-      <div>
-        <p>{text}</p>
-      </div>
-    );
-  }
+function Message(props) {
+  return (
+    <div>
+      <p>{props.text}</p>
+    </div>);
 }
+
 
 ReactDOM.render(
   <React.StrictMode>
