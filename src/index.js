@@ -2,22 +2,53 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Message(props) {
+function HeaderPage() {
   return (
-    <p>{props.text}</p>
+    <h1>Hello ReactJS!</h1>
+  )
+}
+
+function Message({text}) {
+  return (
+    <p>{text}</p>
     );
 }
 
-function App(props) {
+function ListRender({list}) {
+  return (
+    <ul>
+      {list.map((item) => {
+        return (
+          <li>{item}</li>
+        )
+      })}
+    </ul>
+  )
+}
+
+const handelClick = () => {
+  console.log("click on element");
+}
+
+function App({title, today, handel}) {
   return (
     <div>
-      <Message text={props.text} />
+      <HeaderPage />
+      <div>
+        <h2 onClick={handel}>Lesson 1</h2>
+        <Message text={text} />
+        <ListRender list={today} />
+      </div>
+      
     </div>
   )
 }
+
+let text = "Introduction to React JS";
+const knownToday = ["babel", "webpack", "JSX", "clean function", "react component", "props"]
 ReactDOM.render(
   <React.StrictMode>
-    <App text='props from App component'/>
+    <App titlet={text} today = {knownToday} handel = {handelClick}/>
   </React.StrictMode>,
   document.getElementById("root")
 );
