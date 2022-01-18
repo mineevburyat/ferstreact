@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import styles from "./index.module.css"
 
 function HeaderPage() {
   return (
@@ -34,7 +35,7 @@ function App({title, today, handel}) {
   return (
     <div>
       <HeaderPage />
-      <div>
+      <div className={styles.cardlesson}>
         <h2 onClick={handel}>Lesson 1</h2>
         <Message text={text} />
         <ListRender list={today} />
@@ -45,7 +46,7 @@ function App({title, today, handel}) {
 }
 
 let text = "Introduction to React JS";
-const knownToday = ["babel", "webpack", "JSX", "clean function", "react component", "props"]
+const knownToday = ["babel", "webpack", "JSX", "clean function", "react component", "props", "imperative and declorative programming", "react styles and modul styles", "react events"]
 ReactDOM.render(
   <React.StrictMode>
     <App titlet={text} today = {knownToday} handel = {handelClick}/>
