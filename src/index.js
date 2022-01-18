@@ -36,9 +36,12 @@ function App({title, today, handel}) {
     <div>
       <HeaderPage />
       <div className={styles.cardlesson}>
-        <h2 onClick={handel}>Lesson 1</h2>
+        <h2 onClick={handel} className="textCenter">Lesson 1 &dArr;</h2>
+        <hr/>
         <Message text={text} />
-        <ListRender list={today} />
+        <div className={styles.visiotoggle}>
+          <ListRender list={today} />
+        </div>
       </div>
       
     </div>
