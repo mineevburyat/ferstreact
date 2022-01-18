@@ -25,7 +25,7 @@ function ListRender({list}) {
     </ul>
   )
 }
-
+// Почему обработчик только стрелочная функция? С обычной функцией не сработало
 const handelClick = () => {
   console.log("click on element");
 }
