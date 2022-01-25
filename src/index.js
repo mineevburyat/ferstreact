@@ -8,16 +8,34 @@ function Message(props) {
   )
 }
 
-function App() {
-  const [messageList, setMessageList] = useState([{"author":"nameuser", "text": "message 1"}]);
-  // setMessageList = () => {}
-  return (
-    <div>
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      messageList: [{"author":"nameuser", "text": "message 1"}],
+    }
+  }
+  render() {
+    const {messageList} = this.state;
+    return (
+      <div>
       {messageList.map((message) => {
         return (<Message text={message.text}/>)})}
     </div>
-  )
+    )
+  }
 }
+
+// function App() {
+//   const [messageList, setMessageList] = useState([{"author":"nameuser", "text": "message 1"}]);
+//   // setMessageList = () => {}
+//   return (
+//     <div>
+//       {messageList.map((message) => {
+//         return (<Message text={message.text}/>)})}
+//     </div>
+//   )
+// }
 
 ReactDOM.render(
   <React.StrictMode>
