@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
@@ -8,17 +8,20 @@ function Message(props) {
   )
 }
 
-function App(props) {
+function App() {
+  const [messageList, setMessageList] = useState([{"author":"nameuser", "text": "message 1"}]);
+  // setMessageList = () => {}
   return (
     <div>
-      <Message text={props.text} />
+      {messageList.map((message) => {
+        return (<Message text={message.text}/>)})}
     </div>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <App text="hello world!" />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
