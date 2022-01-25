@@ -15,11 +15,9 @@ class App extends React.Component {
       messageList: [{"author":"nameuser", "text": "message 1"}],
     }
   }
-  test = (text) => {
-    console.log("click", text);
+  addMessageOnChat = (text) => {
     const {messageList} = this.state;
-    const newMessageList = [...messageList, {"author": 'username', text: 'new message'}]
-    console.log(newMessageList);
+    const newMessageList = [...messageList, {"author": 'username', text: text}]
     this.setState({messageList: newMessageList})
   }
   render() {
@@ -28,7 +26,7 @@ class App extends React.Component {
       <div>
       {messageList.map((message) => {
         return (<Message text={message.text}/>)})}
-        <button onClick={(event) => {this.test("event4554")}}>test</button>
+        <button onClick={(event) => {this.addMessageOnChat("new message on chat")}}>test</button>
     </div>
     )
   }
