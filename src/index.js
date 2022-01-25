@@ -12,13 +12,14 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      messageList: [{"author":"nameuser", "text": "message 1"}],
+      messageList: [],
       valueInput: "",
     }
   }
-  addMessageOnChat = (text) => {
+
+  addMessageOnChat = (username, text) => {
     const {messageList} = this.state;
-    const newMessageList = [...messageList, {"author": 'username', text: this.state.valueInput}];
+    const newMessageList = [...messageList, {"author": username, "text": this.state.valueInput}];
     this.setState({messageList: newMessageList});
     this.setState({valueInput: ""})
   }
@@ -32,6 +33,20 @@ class App extends React.Component {
     // console.log(newstr);
     this.setState({valueInput: event.target.value})
   }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const {messageList} = this.state;
+    // console.log("вызвался дидапдейт", messageList.length, prevState.messageList.length);
+    if (messageList.length !== prevState.messageList.length) {
+      console.log("изменилось состояние messagelist")
+      let lastIndex = messageList.length - 1;
+      if (messageList[lastIndex].author !== 'Bot') {
+        console.log("сообщение не от бота")
+        this.addMessageOnChat('Bot', "Hello! I am bot! Can I help you?")
+      }
+      
+    }
+    
+  }
   render() {
     const {messageList} = this.state;
     const {valueInput} = this.state;
@@ -40,7 +55,7 @@ class App extends React.Component {
       {messageList.map((message) => {
         return (<Message author={message.author} text={message.text}/>)})}
       <input onChange={this.inputtext} type="text" placeholder="enter a text..." value={valueInput}></input>
-      <button onClick={(event) => {this.addMessageOnChat()}}>test</button>
+      <button onClick={(event) => {this.addMessageOnChat("user")}}>test</button>
     </div>
     )
   }
