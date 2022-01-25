@@ -4,7 +4,7 @@ import "./index.css";
 
 function Message(props) {
   return (
-    <p>{props.text}</p>
+    <p><span>{props.author}</span>:  {props.text}</p>
   )
 }
 
@@ -13,20 +13,34 @@ class App extends React.Component {
     super(props)
     this.state = {
       messageList: [{"author":"nameuser", "text": "message 1"}],
+      valueInput: "",
     }
   }
   addMessageOnChat = (text) => {
     const {messageList} = this.state;
-    const newMessageList = [...messageList, {"author": 'username', text: text}]
-    this.setState({messageList: newMessageList})
+    const newMessageList = [...messageList, {"author": 'username', text: this.state.valueInput}];
+    this.setState({messageList: newMessageList});
+    this.setState({valueInput: ""})
+  }
+  inputtext = (event) => {
+    // console.log(event.target.value);
+    // console.log(this.state);
+    // let {valueInput} = this.state;
+    // console.log(valueInput);
+    // valueInput = valueInput + event.target.input;
+    // console.log(valueInput);
+    // console.log(newstr);
+    this.setState({valueInput: event.target.value})
   }
   render() {
     const {messageList} = this.state;
+    const {valueInput} = this.state;
     return (
       <div>
       {messageList.map((message) => {
-        return (<Message text={message.text}/>)})}
-        <button onClick={(event) => {this.addMessageOnChat("new message on chat")}}>test</button>
+        return (<Message author={message.author} text={message.text}/>)})}
+      <input onChange={this.inputtext} type="text" placeholder="enter a text..." value={valueInput}></input>
+      <button onClick={(event) => {this.addMessageOnChat()}}>test</button>
     </div>
     )
   }
