@@ -4,15 +4,21 @@ import "./index.css";
 
 function Message(props) {
   return (
+    <p>{props.text}</p>
+  )
+}
+
+function App(props) {
+  return (
     <div>
-      <p>{props.text}</p>
+      <Message text={props.text} />
     </div>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <Message text = {"Хелло ворлд!"} />
+    <App text="hello world!" />
   </React.StrictMode>,
   document.getElementById("root")
 );
