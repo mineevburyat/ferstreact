@@ -15,12 +15,20 @@ class App extends React.Component {
       messageList: [{"author":"nameuser", "text": "message 1"}],
     }
   }
+  test = (text) => {
+    console.log("click", text);
+    const {messageList} = this.state;
+    const newMessageList = [...messageList, {"author": 'username', text: 'new message'}]
+    console.log(newMessageList);
+    this.setState({messageList: newMessageList})
+  }
   render() {
     const {messageList} = this.state;
     return (
       <div>
       {messageList.map((message) => {
         return (<Message text={message.text}/>)})}
+        <button onClick={(event) => {this.test("event4554")}}>test</button>
     </div>
     )
   }
