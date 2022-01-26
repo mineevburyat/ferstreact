@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import PropTypes from 'prop-types'
 
 function Message(props) {
+  const {author, text} = props.message;
   return (
-    <p><span>{props.author}</span>:  {props.text}</p>
+    <p><span>{author}</span>:  {text}</p>
   )
+}
+
+Message.propTypes = {
+  message: PropTypes.shape({
+    author: PropTypes.string,
+    text: PropTypes.string,
+  }).isRequired
 }
 
 // class App extends React.Component {
@@ -105,7 +114,7 @@ function App() {
   return (
     <div>
      {messageList.map((message) => {
-         return (<Message author={message.author} text={message.text}/>)})}
+         return (<Message message={message}/>)})}
        <input onChange={inputtext} type="text" placeholder="enter a text..." value={valueInput}></input>
        <button onClick={clickButton}>send</button>
     </div>
