@@ -88,7 +88,7 @@ function App() {
           <Box  sx={{ height: '85hv', width: '100%', bgcolor: 'background.paper' }}></Box>
         </Grid>
         <Grid item xs={12}>
-          <TextField  sx={{ width: '80%', bgcolor: 'background.paper' }} id="inputtext" label="enter text..." variant="standard" />
+          <TextField  sx={{ width: '80%', bgcolor: 'background.paper' }} id="inputtext" label="enter text..." variant="standard" autoFocus/>
           <Button variant="contained">send</Button>
         </Grid>
       </Grid>
