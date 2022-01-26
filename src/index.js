@@ -10,7 +10,8 @@ function Message(props) {
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.timeID = undefined;
     this.state = {
       messageList: [],
       valueInput: "",
@@ -47,7 +48,8 @@ class App extends React.Component {
       let lastIndex = messageList.length - 1;
       if (messageList[lastIndex].author !== 'Bot') {
         console.log("сообщение не от бота")
-        setTimeout(this.addMessageOnChat, 2000, 'Bot', 'Hello! I am bot! Can I help you?')
+        if (this.timeID !== undefined) {clearTimeout(this.timeID)};
+        this.timeID = setTimeout(this.addMessageOnChat, 2000, 'Bot', 'Hello! I am bot! Can I help you?')
         // this.addMessageOnChat('Bot', "Hello! I am bot! Can I help you?")
       }
       
