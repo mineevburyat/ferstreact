@@ -16,13 +16,18 @@ class App extends React.Component {
       valueInput: "",
     }
   }
+  clickButton = (event) => {
+    console.log("click", event)
+    this.addMessageOnChat("username1", this.state.valueInput)
+    this.setState({valueInput: ""})
+  }
 
   addMessageOnChat = (username, text) => {
     const {messageList} = this.state;
-    const newMessageList = [...messageList, {"author": username, "text": this.state.valueInput}];
+    const newMessageList = [...messageList, {author: username, text: text}];
     this.setState({messageList: newMessageList});
-    this.setState({valueInput: ""})
   }
+
   inputtext = (event) => {
     // console.log(event.target.value);
     // console.log(this.state);
@@ -33,6 +38,7 @@ class App extends React.Component {
     // console.log(newstr);
     this.setState({valueInput: event.target.value})
   }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     const {messageList} = this.state;
     // console.log("вызвался дидапдейт", messageList.length, prevState.messageList.length);
@@ -47,6 +53,7 @@ class App extends React.Component {
     }
     
   }
+
   render() {
     const {messageList} = this.state;
     const {valueInput} = this.state;
@@ -55,7 +62,7 @@ class App extends React.Component {
       {messageList.map((message) => {
         return (<Message author={message.author} text={message.text}/>)})}
       <input onChange={this.inputtext} type="text" placeholder="enter a text..." value={valueInput}></input>
-      <button onClick={(event) => {this.addMessageOnChat("user")}}>test</button>
+      <button onClick={this.clickButton}>test</button>
     </div>
     )
   }
