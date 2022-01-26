@@ -76,6 +76,9 @@ export function BasicList() {
 function App() {
   const [messageList, setMessageList] = useState([]);
   const [valueInput,setValueInput] = useState('')
+  const handleChange = (event) => {
+    setValueInput(event.target.value);
+  };
   const addMessageOnChat = (username, text) => {
     setMessageList([...messageList, {author: username, text: text}]);
   }
@@ -97,6 +100,7 @@ function App() {
     setValueInput(event.target.value)
   }
   const clickButton = (event) => {
+    console.log('click')
     addMessageOnChat("username1", valueInput);
     setValueInput('');
   }
@@ -114,7 +118,7 @@ function App() {
         </Grid>
         <Grid item xs={12}>
           <Box display={"flex"} flexDirection={"row"}>
-            <TextField onChange={inputtext} id="inputtext" label="enter text..." variant="standard" autoFocus fullWidth />
+            <TextField onChange={handleChange} id="inputtext" label="enter text..." variant="standard" autoFocus fullWidth value={valueInput}/>
             <Button onClick={clickButton} variant="contained">send</Button>
           </Box>
         </Grid>
