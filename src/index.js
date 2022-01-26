@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 // matrial ui
 // grid layout
@@ -74,7 +74,32 @@ export function BasicList() {
 }
 
 function App() {
-  
+  const [messageList, setMessageList] = useState([]);
+  const [valueInput,setValueInput] = useState('')
+  const addMessageOnChat = (username, text) => {
+    setMessageList([...messageList, {author: username, text: text}]);
+  }
+  useEffect(() => {
+    const lastMessage = messageList[messageList.length - 1];
+    let timerID = undefined;
+    // console.log(lastMessage);
+    if (lastMessage !== undefined) {
+      if (lastMessage.author !== 'Bot') {
+      timerID = setTimeout(addMessageOnChat, 2000, 'Bot', 'Hello! I am bot! Can I help you?');
+
+      }
+    }
+    //разобраться с этой Магией
+    return () => clearTimeout(timerID)
+    }, [messageList]);//зачем требует объявить в списке еще addmessageOnChat
+
+  const inputtext = (event) => {
+    setValueInput(event.target.value)
+  }
+  const clickButton = (event) => {
+    addMessageOnChat("username1", valueInput);
+    setValueInput('');
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
@@ -89,8 +114,8 @@ function App() {
         </Grid>
         <Grid item xs={12}>
           <Box display={"flex"} flexDirection={"row"}>
-            <TextField id="inputtext" label="enter text..." variant="standard" autoFocus fullWidth />
-            <Button variant="contained">send</Button>
+            <TextField onChange={inputtext} id="inputtext" label="enter text..." variant="standard" autoFocus fullWidth />
+            <Button onClick={clickButton} variant="contained">send</Button>
           </Box>
         </Grid>
       </Grid>
