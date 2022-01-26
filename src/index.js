@@ -84,12 +84,14 @@ function App() {
         <Grid item xs={4}>
           <BasicList/>
         </Grid>
-        <Grid item xs={8} sx={{ height:'85hv'}}>
-          <Box  sx={{ height: '85hv', width: '100%', bgcolor: 'background.paper' }}></Box>
+        <Grid item xs={8}>
+          <Box  sx={{ height: '80vh', width: '100%', bgcolor: 'background.paper' }}></Box>
         </Grid>
         <Grid item xs={12}>
-          <TextField  sx={{ width: '80%', bgcolor: 'background.paper' }} id="inputtext" label="enter text..." variant="standard" autoFocus/>
-          <Button variant="contained">send</Button>
+          <Box display={"flex"} flexDirection={"row"}>
+            <TextField id="inputtext" label="enter text..." variant="standard" autoFocus fullWidth />
+            <Button variant="contained">send</Button>
+          </Box>
         </Grid>
       </Grid>
     </Box>
