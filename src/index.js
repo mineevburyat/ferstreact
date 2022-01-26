@@ -85,8 +85,9 @@ function App() {
 
       }
     }
+    //разобраться с этой Магией
     return () => clearTimeout(timerID)
-    }, [messageList]);
+    }, [messageList]);//зачем требует объявить в списке еще addmessageOnChat
 
   const inputtext = (event) => {
     setValueInput(event.target.value)
