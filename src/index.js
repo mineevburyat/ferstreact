@@ -47,7 +47,8 @@ class App extends React.Component {
       let lastIndex = messageList.length - 1;
       if (messageList[lastIndex].author !== 'Bot') {
         console.log("сообщение не от бота")
-        this.addMessageOnChat('Bot', "Hello! I am bot! Can I help you?")
+        setTimeout(this.addMessageOnChat, 2000, 'Bot', 'Hello! I am bot! Can I help you?')
+        // this.addMessageOnChat('Bot', "Hello! I am bot! Can I help you?")
       }
       
     }
@@ -62,7 +63,7 @@ class App extends React.Component {
       {messageList.map((message) => {
         return (<Message author={message.author} text={message.text}/>)})}
       <input onChange={this.inputtext} type="text" placeholder="enter a text..." value={valueInput}></input>
-      <button onClick={this.clickButton}>test</button>
+      <button onClick={this.clickButton}>send</button>
     </div>
     )
   }
