@@ -16,7 +16,12 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export function Chat({ title, selected, handleListItemClick }) {
+export function Chat({
+  title,
+  selected,
+  handleListItemClick,
+  deleteConversationByName,
+}) {
   const s = useStyles();
 
   return (
@@ -27,6 +32,7 @@ export function Chat({ title, selected, handleListItemClick }) {
       onClick={handleListItemClick}
     >
       <ListItemIcon>
+        <button onClick={() => deleteConversationByName(title)}>x</button>
         <AccountCircle fontSize="large" className={styles.icon} />
       </ListItemIcon>
       <div className={styles.description}>

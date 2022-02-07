@@ -11,6 +11,7 @@ import {
   Box,
   AppBar,
 } from "@mui/material";
+import { fullProfileSelector } from "../../store/profile";
 import styles from "./header.module.css";
 import { ThemeContext } from "../../theme-context";
 
@@ -21,8 +22,9 @@ const pages = [
 ];
 
 export function Header() {
-  const profile = useSelector((state) => state.profile);
   const { themeSetter, theme } = useContext(ThemeContext);
+
+  const profile = useSelector(fullProfileSelector);
 
   return (
     <AppBar position="static" color="primary" className={styles.appBar}>

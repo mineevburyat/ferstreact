@@ -1,19 +1,31 @@
+import { useState, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleVisibleProfile } from "../store/profile";
+import { toggleVisibleProfile, fullProfileSelector } from "../store/profile";
+import { conversationsSelector } from "../store/conversations";
 import { ProfileForm } from "../components";
 
-export const ProfilePage = () => {
-  const { isVisibleProfile, firstName, lastName, ...profile } = useSelector(
-    (state) => {
-      return state.profile;
-    }
+export const ProfilePage = ({ someProp = "test" }) => {
+  const [count, setCount] = useState(0);
+  const { isVisibleProfile, firstName, lastName, ...profile } =
+    useSelector(fullProfileSelector);
+
+  // const getConversations = useCallback(
+  //   (state) => conversationsSelector(someProp)(state),
+  //   [someProp]
+  // );
+  const getConversations = useMemo(
+    () => conversationsSelector(someProp),
+    [someProp]
   );
+
+  // @TODO  для примера на уроке
+  const conversations = useSelector(getConversations);
 
   const dispatch = useDispatch();
 
   return (
     <div>
-      <h1>Profile</h1>
+      <h1 onClick={() => setCount(count + 1)}>Profile {count}</h1>
 
       {isVisibleProfile && (
         <div>
