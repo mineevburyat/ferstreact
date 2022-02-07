@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Questions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. что такое redux - стейт менеджер (стм) библиотека для управления глобальным состоянием (пропс дриллинг)
 
-## Available Scripts
+2. что такое action - действие (для передачи в диспетчер) для описния того что нужно сделать
+   обьект, с полями:
+   type - название (тип) действия
+   payload - доп параметры (полезная нагрузка) // {}, [], false, "", number
 
-In the project directory, you can run:
+3. что такое action creator - функция, которая возвращает action
 
-### `npm start`
+4. что такое reducer (чистая функция) - обработчик действий, функция, принимает два параметра (state, action)
+   обновляет состояние на основании переданного типа
+   нельзя в редюсере - мутации, сайд эффеекты
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+5. из чего состоит обьект store
+   getState - для получения текущего состояние
+   dispatch - передача action в reducer
+   subscribe - подписка на изменения состояния
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+6. useSelector
+7. useDispatch
+8. combineReducers
 
-### `npm test`
+9. Способо оптимизации селекторов
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- обьявление селектора снаружи компонента (вынос селектора в отдельный файл store/feature/selectors.js)
+- использование useMemo/useCallback
+  ; const getConversations = useMemo(
+  ; () => conversationsSelector(someProp),
+  ; [someProp]
+  ; );
 
-### `npm run build`
+  ; // @TODO для примера на уроке
+  ; const conversations = useSelector(getConversations);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- useSelector(selector, shallowEqual/deepEqual/ (next, prev) => next === prev)
+- reselect
